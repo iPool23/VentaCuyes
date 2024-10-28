@@ -1,7 +1,7 @@
 <!-- MODAL ELIMINAR -->
-<div class="modal fade" id="modal-eliminar-{{ $reg->id }}">
+<div class="modal fade" id="modal-eliminar-{{ $venta->id }}">
     <div class="modal-dialog">
-        <form action="{{ route('usuario.destroy', $reg->id) }}" method="post">
+        <form action="#" method="post">
             @csrf
             @method('DELETE')
             <div class="modal-content bg-danger">
@@ -12,7 +12,7 @@
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>¿Está seguro que desea eliminar al usuario {{ $reg->nombres }} {{ $reg->apellidos }}?</p>
+                    <p>¿Está seguro que desea eliminar la venta {{ $venta->id }}?</p>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-outline-light" data-dismiss="modal">Cancelar</button>

@@ -43,9 +43,15 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="" class="nav-link {{ Request::is('gestionar/clientes*') ? 'active' : '' }}">
+                            <a href="{{ route('usuario.index') }}" class="nav-link {{ Request::is('gestionar/clientes*') ? 'active' : '' }}">
                                 <i class="far fa-circle nav-icon"></i>
-                                <p>Clientes</p>
+                                <p>Usuarios</p>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('venta.index') }}" class="nav-link {{ Request::is('gestionar/venta*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Ventas</p>
                             </a>
                         </li>
                     </ul>

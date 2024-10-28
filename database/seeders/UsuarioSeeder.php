@@ -22,5 +22,14 @@ class UsuarioSeeder extends Seeder
         $dueño->password = '12345678';
         $dueño->rol = 'Admin';
         $dueño->save();
+
+        $dueño2 = new Usuario();
+        $dueño2->nombres = 'Collins Pool';
+        $dueño2->apellidos = 'Vieira Abad';
+        $dueño2->usuario = 'vabadcollinspoo';
+        $dueño2->email = 'vabadcollinspoo@gmail.com';
+        $dueño2->password = 'vabadcollinspoo';
+        $dueño2->rol = 'Admin';
+        $dueño2->save();
     }
 }
