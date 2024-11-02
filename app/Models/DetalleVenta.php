@@ -25,9 +25,4 @@ class DetalleVenta extends Model
         return $this->belongsTo(Venta::class);
     }
 
-    // Relación con cuyes
-    public function cuyes()
-    {
-        return $this->belongsTo(Cuyes::class);
-    }
 }

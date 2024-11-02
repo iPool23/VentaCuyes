@@ -8,54 +8,56 @@
     <form id="usuarioForm" action="{{ isset($usuario) && $usuario->id ? route('usuario.update', $usuario->id) : route('usuario.store') }}" method="POST">
         @csrf
         @if(isset($usuario) && $usuario->id)
-            @method('PUT')
+        @method('PUT')
         @endif
         <div class="modal-body">
             <div class="form-group">
                 <label for="nombres">Nombres</label>
                 <input type="text" class="form-control" id="nombres" name="nombres" value="{{ old('nombres', $usuario->nombres ?? '') }}" required>
                 @error('nombres')
-                    <small class="text-danger">{{ $message }}</small>
+                <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="apellidos">Apellidos</label>
                 <input type="text" class="form-control" id="apellidos" name="apellidos" value="{{ old('apellidos', $usuario->apellidos ?? '') }}" required>
                 @error('apellidos')
-                    <small class="text-danger">{{ $message }}</small>
+                <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="usuario">Usuario</label>
                 <input type="text" class="form-control" id="usuario" name="usuario" value="{{ old('usuario', $usuario->usuario ?? '') }}" required>
                 @error('usuario')
-                    <small class="text-danger">{{ $message }}</small>
+                <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" id="email" name="email" value="{{ old('email', $usuario->email ?? '') }}" required>
                 @error('email')
-                    <small class="text-danger">{{ $message }}</small>
+                <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="rol">Rol</label>
                 <select class="form-control" id="rol" name="rol" required>
                     <option value="">Seleccione un rol</option>
-                    <option value="admin" {{ (isset($usuario) && $usuario->rol == 'admin') ? 'selected' : '' }}>Administrador</option>
-                    <option value="user" {{ (isset($usuario) && $usuario->rol == 'user') ? 'selected' : '' }}>Usuario</option>
-                    <option value="editor" {{ (isset($usuario) && $usuario->rol == 'editor') ? 'selected' : '' }}>Editor</option>
+                    @foreach($roles as $role)
+                    <option value="{{ $role }}" {{ (isset($usuario) && $usuario->hasRole($role)) ? 'selected' : '' }}>
+                        {{ ucfirst($role) }}
+                    </option>
+                    @endforeach
                 </select>
                 @error('rol')
-                    <small class="text-danger">{{ $message }}</small>
+                <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
             <div class="form-group">
                 <label for="password">Contraseña</label>
                 <input type="password" class="form-control" id="password" name="password" {{ isset($usuario) ? '' : 'required' }}>
                 @error('password')
-                    <small class="text-danger">{{ $message }}</small>
+                <small class="text-danger">{{ $message }}</small>
                 @enderror
             </div>
             <div class="form-group">

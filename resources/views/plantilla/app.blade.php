@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="es">
+
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -7,19 +8,13 @@
   <meta name="robots" content="noindex">
   <meta name="googlebot" content="noindex">
   <link rel="icon" type="image/png" href="{{asset('assets/favicon.ico')}}">
-  <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet"
     href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome Icons -->
   <link rel="stylesheet" href="{{asset('css/fontawesome-free/css/all.min.css')}}">
-  <!-- Theme style -->
   <link rel="stylesheet" href="{{asset('css/adminlte.css')}}">
-  <style>
-    .sidebar-dark-blue {
-      background: #455279 !important;
-    }
-  </style>
-  <!--Estilos -->
+  <link rel="stylesheet" href="{{ asset('css/style.css') }}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.min.css">
+
 </head>
 
 <body class="hold-transition sidebar-mini">
@@ -27,73 +22,42 @@
 
     <!-- Navbar -->
     <nav class="main-header navbar navbar-expand navbar-white navbar-light">
-      <!-- Left navbar links -->
       <ul class="navbar-nav">
         <li class="nav-item">
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="" class="nav-link"><i class="nav-icon fas fa-th text-success"></i> Escritorio</a>
-        </li>
-        <li class="nav-item d-none d-sm-inline-block">
-          <a href="#" class="nav-link"><i class="fas fa-cart-plus text-blue"></i> POS</a>
         </li>
       </ul>
 
       <!-- Right navbar links -->
       <ul class="navbar-nav ml-auto">
-        <!-- Messages Dropdown Menu -->
         <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="fa fa-user text-warning"></i> 
+          <a class="nav-link d-flex align-items-center px-3" data-toggle="dropdown" href="#">
+            <img src="{{ $empleado ? asset('empleados/'.$empleado->imagen_perfil) : asset('perfiles/user-avatar.png') }}"
+              class="rounded-circle border-2 border-white shadow-sm"
+              style="width: 35px; height: 35px; object-fit: cover;"
+              alt="{{ $usuario->nombres ?? 'Invitado' }}">
+            <span class="mx-2 text-dark">{{ auth()->user()->nombres }}</span>
+            <i class="fas fa-chevron-down ms-2" style="font-size: 0.8rem;"></i>
           </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <a href="#" class="dropdown-item text-sm"><i class="fas fa-user-cog text-primary"></i> Perfil</a>
+          <div class="dropdown-menu dropdown-menu-right border-0 shadow-sm"
+            style="min-width: 200px; border-radius: 0.5rem; margin-top: 0.5rem;">
+            <a href="#" class="dropdown-item py-2 px-4">
+              <i class="fas fa-user-cog me-2" style="color: var(--accent-color);"></i>
+              <span>Mi Perfil</span>
+            </a>
             <div class="dropdown-divider"></div>
             <form action="{{ route('logout') }}" method="POST">
-                @csrf
-                <button type="submit" class="dropdown-item dropdown-footer">
-                  <i class="fas fa-sign-out-alt text-danger"></i> Logout
-                </button>
+              @csrf
+              <button type="submit" class="dropdown-item py-2 px-4 text-danger">
+                <i class="fas fa-sign-out-alt me-2"></i>
+                <span>Cerrar Sesión</span>
+              </button>
             </form>
-              
-          </div>
-        </li>
-        <!-- Notifications Dropdown Menu -->
-        <li class="nav-item dropdown">
-          <a class="nav-link" data-toggle="dropdown" href="#">
-            <i class="far fa-bell"></i>
-            <span class="badge badge-warning navbar-badge">15</span>
-          </a>
-          <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-            <span class="dropdown-header">15 Notifications</span>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-envelope mr-2"></i> 4 new messages
-              <span class="float-right text-muted text-sm">3 mins</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-users mr-2"></i> 8 friend requests
-              <span class="float-right text-muted text-sm">12 hours</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item">
-              <i class="fas fa-file mr-2"></i> 3 new reports
-              <span class="float-right text-muted text-sm">2 days</span>
-            </a>
-            <div class="dropdown-divider"></div>
-            <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="nav-link" data-widget="fullscreen" href="#" role="button">
-            <i class="fas fa-expand-arrows-alt"></i>
-          </a>
-        </li>
-        <li class="nav-item">
-          <a class="nav-link" data-widget="control-sidebar" data-slide="true" href="#" role="button">
-            <i class="fas fa-th-large"></i>
+          <a class="nav-link px-3" data-widget="fullscreen" href="#" role="button">
+            <i class="fas fa-expand-arrows-alt" style="color: var(--accent-color);"></i>
           </a>
         </li>
       </ul>
@@ -103,7 +67,7 @@
     @include('plantilla.menu')
 
     <!-- Content Wrapper. Contains page content -->
-    <div class="content-wrapper">
+    <div class="content-wrapper background-color-dashboard">
       <!-- Content Header (Page header) -->
       <div class="content-header">
 
@@ -113,7 +77,6 @@
     </div>
     <!-- /.content-wrapper -->
 
-    @include('plantilla.help')
     @include('plantilla.footer')
   </div>
   <!-- ./wrapper -->
@@ -127,7 +90,7 @@
   <!-- AdminLTE App -->
   <script src="{{asset('js/adminlte.min.js')}}"></script>
   <!-- scripts de cada plantilla -->
-  <!--Fin Scripts -->
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.7.32/dist/sweetalert2.all.min.js"></script>
   @stack('scripts')
 </body>
 

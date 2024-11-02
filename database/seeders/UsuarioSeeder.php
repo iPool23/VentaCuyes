@@ -20,7 +20,7 @@ class UsuarioSeeder extends Seeder
         $dueño->usuario = 'pool23';
         $dueño->email = 'pool23@gmail.com';
         $dueño->password = '12345678';
-        $dueño->rol = 'Admin';
+        $dueño->assignRole('admin');
         $dueño->save();
 
         $dueño2 = new Usuario();
@@ -29,7 +29,25 @@ class UsuarioSeeder extends Seeder
         $dueño2->usuario = 'vabadcollinspoo';
         $dueño2->email = 'vabadcollinspoo@gmail.com';
         $dueño2->password = 'vabadcollinspoo';
-        $dueño2->rol = 'Admin';
+        $dueño2->assignRole('admin');
         $dueño2->save();
+
+        $empleado = new Usuario();
+        $empleado->nombres = 'Victor Anthony';
+        $empleado->apellidos = 'Pantaleon Villegas';
+        $empleado->usuario = 'victor23';
+        $empleado->email = 'victor23@gmail.com';
+        $empleado->password = '12345678';
+        $empleado->assignRole('admin');
+        $empleado->save();
+
+        $proveedor = new Usuario();
+        $proveedor->nombres = 'Irvin Yair';
+        $proveedor->apellidos = 'Acuña Mendoza';
+        $proveedor->usuario = 'irvin23';
+        $proveedor->email = 'irvin23@gmail.com';
+        $proveedor->password = '12345678';
+        $proveedor->assignRole('admin');
+        $proveedor->save();
     }
 }

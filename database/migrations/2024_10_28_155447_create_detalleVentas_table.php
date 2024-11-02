@@ -20,12 +20,6 @@ return new class extends Migration
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
 
-            // Relación con cuyes (producto)
-            $table->foreignId('cuy_id')
-                ->constrained('cuyes')
-                ->onUpdate('cascade')
-                ->onDelete('restrict');
-
             $table->integer('cantidad');
             $table->decimal('precio_unitario', 10, 2);
             $table->decimal('subtotal', 10, 2);

@@ -1,6 +1,7 @@
 @extends('plantilla.app')
 
 @section('contenido')
+@hasanyrole('admin') 
 <div class="content">
     <div class="container-fluid">
         <div class="row">
@@ -9,7 +10,6 @@
                     <div class="card-header">
                         <h5 class="m-0">Usuarios 
                             <button class="btn btn-primary" id="btnNuevo"><i class="fas fa-user-plus"></i> Nuevo</button>
-                            <a href="" class="btn btn-success"><i class="fas fa-file-csv"></i> Exportar CSV</a>
                         </h5>
                     </div>
                     <div class="card-body">
@@ -70,7 +70,7 @@
                                         <td>{{ $reg->apellidos }}</td>
                                         <td>{{ $reg->usuario }}</td>
                                         <td>{{ $reg->email }}</td>
-                                        <td>{{ ucfirst($reg->rol) }}</td>
+                                        <td>{{ $reg->getRoleNames()->isNotEmpty() ? $reg->getRoleNames()->implode(', ') : 'Sin rol' }}</td>
                                     </tr>
                                     @include('usuario.delete')
                                     @endforeach
@@ -92,6 +92,13 @@
 <div class="modal fade" id="modal-action" data-backdrop="static" data-keyboard="false">
     <div class="modal-dialog modal-lg"></div>
 </div>
+
+@else
+<div class="alert alert-danger">
+    No tienes permiso para acceder a esta sección.
+</div>
+@endhasanyrole
+
 <!-- FIN MODAL UPDATE -->
 @endsection
 

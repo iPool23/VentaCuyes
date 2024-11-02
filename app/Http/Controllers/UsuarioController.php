@@ -6,6 +6,7 @@ use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Validation\Rule;
+use Spatie\Permission\Models\Role;
 
 class UsuarioController extends Controller
 {
@@ -15,9 +16,10 @@ class UsuarioController extends Controller
     public function index(Request $request)
     {
         $texto = trim($request->get('texto'));
-        $registros = Usuario::where('nombres', 'LIKE', '%'.$texto.'%')
-            ->orWhere('apellidos', 'LIKE', '%'.$texto.'%')
-            ->orWhere('email', 'LIKE', '%'.$texto.'%')
+        $registros = Usuario::with('roles')
+            ->where('nombres', 'LIKE', '%' . $texto . '%')
+            ->orWhere('apellidos', 'LIKE', '%' . $texto . '%')
+            ->orWhere('email', 'LIKE', '%' . $texto . '%')
             ->orderBy('id', 'desc')
             ->paginate(10);
 
@@ -30,7 +32,8 @@ class UsuarioController extends Controller
     public function create()
     {
         $usuario = new Usuario();
-        return view('usuario.action', compact('usuario'));
+        $roles = Role::pluck('name', 'name');
+        return view('usuario.action', compact('usuario', 'roles'));
     }
 
     /**
@@ -44,13 +47,15 @@ class UsuarioController extends Controller
             'usuario' => 'required|string|max:255|unique:usuarios',
             'email' => 'required|string|email|max:255|unique:usuarios',
             'password' => 'required|string|min:8',
-            'rol' => 'required|string|in:admin,user,editor',
+            'rol' => 'required|string|exists:roles,name',
         ]);
 
-        $usuario = Usuario::create($request->all());
+        $usuario = Usuario::create($request->except('rol'));
+
+        $usuario->assignRole($request->rol);
 
         return redirect()->route('usuario.index')
-            ->with('mensaje', 'Usuario ' . $usuario->nombres . ' ' . $usuario->apellidos . ' creado satisfactoriamente.');
+            ->with('mensaje', 'Usuario creado satisfactoriamente.');
     }
 
     /**
@@ -66,7 +71,8 @@ class UsuarioController extends Controller
      */
     public function edit(Usuario $usuario)
     {
-        return view('usuario.action', compact('usuario'));
+        $roles = Role::pluck('name', 'name');
+        return view('usuario.action', compact('usuario', 'roles'));
     }
 
     /**
@@ -80,19 +86,19 @@ class UsuarioController extends Controller
             'usuario' => ['required', 'string', 'max:255', Rule::unique('usuarios')->ignore($usuario->id)],
             'email' => ['required', 'string', 'email', 'max:255', Rule::unique('usuarios')->ignore($usuario->id)],
             'password' => 'nullable|string|min:8',
-            'rol' => 'required|string|in:admin,user,editor',
+            'rol' => 'required|string|exists:roles,name',
         ]);
 
-        $usuario->fill($request->except('password'));
+        $usuario->update($request->except(['password', 'rol']));
 
         if ($request->filled('password')) {
-            $usuario->password = $request->password;
+            $usuario->password = bcrypt($request->password);
         }
 
-        $usuario->save();
+        $usuario->syncRoles($request->rol);
 
         return redirect()->route('usuario.index')
-            ->with('mensaje', 'Usuario ' . $usuario->nombres . ' ' . $usuario->apellidos . ' actualizado correctamente.');
+            ->with('mensaje', 'Usuario actualizado correctamente.');
     }
 
     /**

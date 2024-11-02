@@ -5,12 +5,13 @@ namespace App\Http\Controllers;
 use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Models\Empleado;
 
 class AuthController extends Controller
 {
     public function mostrarLogin()
     {
-        if (Auth::check()) {
+        if (Auth::guard('usuario')->check()) {
             return redirect()->route('dashboard');
         }
         return view('usuario.login');
@@ -19,7 +20,8 @@ class AuthController extends Controller
     public function mostrarDashboard()
     {
         $usuario = Auth::guard('usuario')->user();
-        return view('usuario.dashboard', compact('usuario'));
+        $empleado = Empleado::where('usuario_id', $usuario->id)->first();
+        return view('usuario.dashboard', compact('usuario', 'empleado'));
     }
 
     protected function redirectTo()

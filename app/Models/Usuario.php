@@ -1,17 +1,18 @@
 <?php
-
 namespace App\Models;
 
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
-use Illuminate\Contracts\Auth\Authenticatable as AuthenticatableContract;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Spatie\Permission\Traits\HasRoles;
 
 class Usuario extends Authenticatable
 {
-    use HasFactory, Notifiable;
+    use HasFactory, Notifiable, HasRoles;
 
-    protected $table = "usuarios"; 
+    protected $table = 'usuarios'; 
+
+    protected $guard_name = 'usuario';
 
     protected $fillable = [
         'nombres',
@@ -19,7 +20,6 @@ class Usuario extends Authenticatable
         'usuario',
         'email',
         'password',
-        'rol',
     ];
 
     public function getAuthPassword()
@@ -35,5 +35,20 @@ class Usuario extends Authenticatable
     public function userable()
     {
         return $this->morphTo();
+    }
+
+    public function cliente()
+    {
+        return $this->hasOne(Cliente::class);
+    }
+
+    public function empleado()
+    {
+        return $this->hasOne(Empleado::class);
+    }
+
+    public function proveedor()
+    {
+        return $this->hasOne(Proveedor::class);
     }
 }
