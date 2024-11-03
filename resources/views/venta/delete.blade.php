@@ -1,12 +1,12 @@
 <!-- MODAL ELIMINAR -->
-<div class="modal fade" id="modal-eliminar-{{ $venta->id }}">
-    <div class="modal-dialog">
-        <form action="#" method="post">
+<div class="modal fade" id="modal-eliminar-{{ $venta->id }}" tabindex="-1" role="dialog" aria-labelledby="modal-eliminar-label-{{ $venta->id }}" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <form action="{{ route('venta.toggle-disponible', $venta->id) }}" method="post">
             @csrf
-            @method('DELETE')
+            @method('PUT')
             <div class="modal-content bg-danger">
                 <div class="modal-header">
-                    <h4 class="modal-title">Eliminar Venta</h4>
+                    <h4 class="modal-title" id="modal-eliminar-label-{{ $venta->id }}">Eliminar Venta</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">&times;</span>
                     </button>

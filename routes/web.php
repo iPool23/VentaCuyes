@@ -35,4 +35,6 @@ Route::middleware(['auth:usuario'])->group(function () {
         ->name('plato-cuy.toggle-disponible');
     //rutas para ventas
     Route::resource('venta', VentaController::class);
+    Route::put('venta/{venta}/toggle-disponible', [VentaController::class, 'toggleDisponible'])
+        ->name('venta.toggle-disponible');
 });

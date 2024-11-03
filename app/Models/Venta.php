@@ -14,8 +14,7 @@ class Venta extends Model
     protected $fillable = [
         'fecha',
         'total',
-        'cliente_id',
-        'usuario_id',
+        'cliente_id'
     ];
 
     // Relación con DetalleVenta

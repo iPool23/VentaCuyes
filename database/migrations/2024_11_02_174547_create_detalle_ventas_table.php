@@ -13,17 +13,23 @@ return new class extends Migration
     {
         Schema::create('detalle_ventas', function (Blueprint $table) {
             $table->id();
-
+    
             // Relación con ventas
             $table->foreignId('venta_id')
                 ->constrained('ventas')
                 ->onUpdate('cascade')
                 ->onDelete('cascade');
-
+    
+            // Relación con platos
+            $table->foreignId('plato_id')
+                ->constrained('platos_cuy')
+                ->onUpdate('cascade')
+                ->onDelete('restrict');
+    
             $table->integer('cantidad');
             $table->decimal('precio_unitario', 10, 2);
             $table->decimal('subtotal', 10, 2);
-
+    
             $table->timestamps();
         });
     }

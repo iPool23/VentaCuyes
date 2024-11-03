@@ -35,6 +35,10 @@ class PlatoCuy extends Model
     {
         return $this->belongsTo(Proveedor::class);
     }
+    public function detalles()
+    {
+        return $this->hasMany(DetalleVenta::class);
+    }
 
     // Tipos de preparación disponibles
     public static function tiposPreparacion()
