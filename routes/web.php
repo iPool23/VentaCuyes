@@ -16,21 +16,23 @@ Route::get('/', function () {
     if (Auth::check()) {
         return redirect()->route('dashboard');
     }
-    return redirect()->route('login');
+    return view('index');
 });
 
+// Rutas de autenticación
 Route::get('login', [AuthController::class, 'mostrarLogin'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
 
+// Grupo de rutas protegidas por autenticación
 Route::middleware(['auth:usuario'])->group(function () {
     Route::get('dashboard', [AuthController::class, 'mostrarDashboard'])->name('dashboard');
     Route::post('logout', [AuthController::class, 'logout'])->name('logout');
 
-    Route::resource('usuario', controller: UsuarioController::class);
-    Route::resource('empleado', controller: EmpleadoController::class);
-    Route::resource('cliente', controller: ClienteController::class);
-    Route::resource('proveedor', controller: ProveedorController::class);
-    Route::resource('plato-cuy', controller: PlatoCuyController::class);
+    Route::resource('usuario', UsuarioController::class);
+    Route::resource('empleado', EmpleadoController::class);
+    Route::resource('cliente', ClienteController::class);
+    Route::resource('proveedor', ProveedorController::class);
+    Route::resource('plato-cuy', PlatoCuyController::class);
 
     Route::post('plato-cuy/{platoCuy}/toggle-disponible', [PlatoCuyController::class, 'toggleDisponible'])
         ->name('plato-cuy.toggle-disponible');
