@@ -8,6 +8,8 @@ use App\Http\Controllers\ClienteController;
 use App\Http\Controllers\ProveedorController;
 use App\Http\Controllers\PlatoCuyController;
 use App\Http\Controllers\VentaController;
+use App\Http\Controllers\PerfilController;
+use App\Http\Controllers\MenuController;
 use Illuminate\Support\Facades\Auth;
 
 Route::get('/', function () {
@@ -19,7 +21,6 @@ Route::get('/', function () {
 
 Route::get('login', [AuthController::class, 'mostrarLogin'])->name('login');
 Route::post('login', [AuthController::class, 'login']);
-
 
 Route::middleware(['auth:usuario'])->group(function () {
     Route::get('dashboard', [AuthController::class, 'mostrarDashboard'])->name('dashboard');
@@ -33,8 +34,13 @@ Route::middleware(['auth:usuario'])->group(function () {
 
     Route::post('plato-cuy/{platoCuy}/toggle-disponible', [PlatoCuyController::class, 'toggleDisponible'])
         ->name('plato-cuy.toggle-disponible');
-    //rutas para ventas
+
     Route::resource('venta', VentaController::class);
     Route::put('venta/{venta}/toggle-disponible', [VentaController::class, 'toggleDisponible'])
         ->name('venta.toggle-disponible');
+
+    Route::get('/perfil', [PerfilController::class, 'show'])->name('perfil.show');
+    Route::put('/perfil', [PerfilController::class, 'update'])->name('perfil.update');
+
+    Route::get('/menu', [MenuController::class, 'index'])->name('menu.index');
 });

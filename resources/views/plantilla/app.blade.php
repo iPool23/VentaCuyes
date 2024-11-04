@@ -41,7 +41,7 @@
           </a>
           <div class="dropdown-menu dropdown-menu-right border-0 shadow-sm"
             style="min-width: 200px; border-radius: 0.5rem; margin-top: 0.5rem;">
-            <a href="#" class="dropdown-item py-2 px-4">
+            <a href="{{ route('perfil.show') }}" class="dropdown-item py-2 px-4">
               <i class="fas fa-user-cog me-2" style="color: var(--accent-color);"></i>
               <span>Mi Perfil</span>
             </a>

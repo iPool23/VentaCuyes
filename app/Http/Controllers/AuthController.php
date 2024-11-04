@@ -39,7 +39,13 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
 
         if (Auth::guard('usuario')->attempt($credentials)) {
-            return redirect()->intended('dashboard');
+            $usuario = Auth::guard('usuario')->user();
+
+            if ($usuario->roles->contains('name', 'cliente')) {
+                return redirect()->route('menu.index');
+            }
+
+            return redirect()->route('dashboard');
         }
 
         return back()->withErrors(['email' => 'Las credenciales son incorrectas.']);

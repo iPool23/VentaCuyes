@@ -5,7 +5,7 @@ namespace Database\Seeders;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 use App\Models\Usuario;
-use App\Models\Empleado;
+use App\Models\Empleado; // Ensure this model exists in the specified namespace
 
 class EmpleadoSeeder extends Seeder
 {
@@ -20,7 +20,7 @@ class EmpleadoSeeder extends Seeder
             'apellidos' => 'Torres Pérez',
             'usuario' => 'mtorres',
             'email' => 'mtorres@gmail.com',
-            'password' => bcrypt('password123')
+            'password' => 'password123'
         ])->assignRole('empleado');
 
         Empleado::create([
@@ -39,7 +39,7 @@ class EmpleadoSeeder extends Seeder
             'apellidos' => 'Ruiz Silva',
             'usuario' => 'pruiz',
             'email' => 'pruiz@gmail.com',
-            'password' => bcrypt('password123')
+            'password' => 'password123'
         ])->assignRole('empleado');
 
         Empleado::create([
@@ -58,7 +58,7 @@ class EmpleadoSeeder extends Seeder
             'apellidos' => 'Vásquez Castro',
             'usuario' => 'avasquez',
             'email' => 'avasquez@gmail.com',
-            'password' => bcrypt('password123')
+            'password' => 'password123'
         ])->assignRole('empleado');
 
         Empleado::create([

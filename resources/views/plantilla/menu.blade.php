@@ -1,5 +1,4 @@
 <!-- Main Sidebar Container -->
-<!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-blue elevation-4">
     <!-- Brand Logo -->
     <a href="{{ route('dashboard') }}" class="brand-link d-flex align-items-center p-3">
@@ -19,17 +18,25 @@
                 </span>
             </div>
             <div class="info ms-3">
-                <a href="#" class="d-block text-decoration-none">{{ $usuario->nombres ?? 'Invitado' }}</a>
+                <a href="{{ route('perfil.show') }}" class="d-block text-decoration-none">{{ $usuario->nombres ?? 'Invitado' }}</a>
             </div>
         </div>
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
             <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                @hasanyrole('admin|empleado')
                 <li class="nav-item">
                     <a href="{{ route('dashboard') }}" class="nav-link {{ Request::is('dashboard') ? 'active' : '' }}">
                         <i class="nav-icon fas fa-tachometer-alt"></i>
-                        <p>Dashboard</p>
+                        <p>Panel de Control</p>
+                    </a>
+                </li>
+                @endhasanyrole
+                <li class="nav-item">
+                    <a href="{{ route('menu.index') }}" class="nav-link {{ Request::is('menu') ? 'active' : '' }}">
+                        <i class="nav-icon fas fa-utensils me-2"></i>
+                        <p>Ver Carta</p>
                     </a>
                 </li>
 
@@ -89,17 +96,13 @@
                                 <p>Empleados</p>
                             </a>
                         </li>
+                        <li class="nav-item">
+                            <a href="{{ route('cliente.index') }}" class="nav-link {{ Request::is('seguridad/cliente*') ? 'active' : '' }}">
+                                <i class="far fa-circle nav-icon"></i>
+                                <p>Clientes</p>
+                            </a>
+                        </li>
                     </ul>
-                </li>
-                @endhasrole
-
-                <!-- Cliente Section -->
-                @hasrole('cliente')
-                <li class="nav-item">
-                    <a href="{{ route('reservas.index') }}" class="nav-link {{ Request::is('reservas*') ? 'active' : '' }}">
-                        <i class="nav-icon fas fa-calendar-alt"></i>
-                        <p>Reservar Mesa</p>
-                    </a>
                 </li>
                 @endhasrole
 

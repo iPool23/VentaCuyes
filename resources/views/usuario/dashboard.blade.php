@@ -1,6 +1,7 @@
 @extends('plantilla.app')
 
 @section('contenido')
+@hasanyrole('admin|empleado')
 <div class="d-flex flex-column min-vh-100 mx-4">
     <div class="content-header w-100">
         <div class="container-fluid">
@@ -132,16 +133,32 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                    $ventas = \App\Models\Venta::with(['cliente', 'detalles.plato'])
+                                    ->orderBy('created_at', 'desc')
+                                    ->take(5)
+                                    ->get();
+                                    @endphp
+
+                                    @if($ventas->isEmpty())
                                     <tr>
-                                        <td>Juan Pérez</td>
-                                        <td>Cuy Chactado</td>
-                                        <td>S/. 45.00</td>
+                                        <td colspan="3" class="text-center">
+                                            <div class="alert alert-info mb-0">
+                                                <i class="fas fa-info-circle"></i> Aún no hay ventas registradas
+                                            </div>
+                                        </td>
                                     </tr>
+                                    @else
+                                    @foreach($ventas as $venta)
+                                    @foreach($venta->detalles as $detalle)
                                     <tr>
-                                        <td>María López</td>
-                                        <td>Cuy al Palo</td>
-                                        <td>S/. 50.00</td>
+                                        <td>{{ $venta->cliente->usuario->nombres }} {{ $venta->cliente->usuario->apellidos }}</td>
+                                        <td>{{ $detalle->plato->nombre_plato }}</td>
+                                        <td>S/. {{ number_format($detalle->subtotal, 2) }}</td>
                                     </tr>
+                                    @endforeach
+                                    @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -166,16 +183,34 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    @php
+                                    $platosVendidos = \App\Models\DetalleVenta::selectRaw('plato_id,
+                                    SUM(cantidad) as total_cantidad,
+                                    SUM(subtotal) as total_ventas')
+                                    ->with('plato')
+                                    ->groupBy('plato_id')
+                                    ->orderBy('total_cantidad', 'desc')
+                                    ->take(5)
+                                    ->get();
+                                    @endphp
+
+                                    @if($platosVendidos->isEmpty())
                                     <tr>
-                                        <td>Cuy Chactado</td>
-                                        <td>25</td>
-                                        <td>S/. 1,125.00</td>
+                                        <td colspan="3" class="text-center">
+                                            <div class="alert alert-info mb-0">
+                                                <i class="fas fa-info-circle"></i> Aún no hay ventas registradas
+                                            </div>
+                                        </td>
                                     </tr>
+                                    @else
+                                    @foreach($platosVendidos as $detalle)
                                     <tr>
-                                        <td>Cuy al Palo</td>
-                                        <td>18</td>
-                                        <td>S/. 900.00</td>
+                                        <td>{{ $detalle->plato->nombre_plato }}</td>
+                                        <td>{{ $detalle->total_cantidad }}</td>
+                                        <td>S/. {{ number_format($detalle->total_ventas, 2) }}</td>
                                     </tr>
+                                    @endforeach
+                                    @endif
                                 </tbody>
                             </table>
                         </div>
@@ -185,43 +220,50 @@
         </div>
     </section>
 </div>
+
+@else
+<div class="alert alert-danger">
+    No tienes permiso para acceder a esta sección.
+</div>
+@endhasanyrole
+
 @endsection
 
 @push('styles')
 <style>
-.content-wrapper {
-    margin-left: 0 !important;
-    margin-right: 0 !important;
-    padding: 0 !important;
-    background: transparent !important;
-}
+    .content-wrapper {
+        margin-left: 0 !important;
+        margin-right: 0 !important;
+        padding: 0 !important;
+        background: transparent !important;
+    }
 
-.main-sidebar {
-    position: fixed;
-}
+    .main-sidebar {
+        position: fixed;
+    }
 
-.content {
-    padding: 20px;
-    width: 100%;
-}
+    .content {
+        padding: 20px;
+        width: 100%;
+    }
 
-.main-footer {
-    margin-top: auto !important;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-}
+    .main-footer {
+        margin-top: auto !important;
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+    }
 
-.small-box {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    border-radius: 0.25rem;
-    box-shadow: 0 0 1px rgba(0,0,0,.125), 0 1px 3px rgba(0,0,0,.2);
-    margin-bottom: 20px;
-}
+    .small-box {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+        border-radius: 0.25rem;
+        box-shadow: 0 0 1px rgba(0, 0, 0, .125), 0 1px 3px rgba(0, 0, 0, .2);
+        margin-bottom: 20px;
+    }
 
-.card {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-}
+    .card {
+        background: rgba(255, 255, 255, 0.1);
+        backdrop-filter: blur(10px);
+    }
 </style>
 @endpush
