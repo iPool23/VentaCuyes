@@ -3,11 +3,11 @@
 
 <head>
     <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1"> 
+    <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <title>Cuyes Doña Juana</title>
 
-    <link rel="icon" href="{{asset('index-img/favicon.ico')}}">
+    <link rel="icon" href="{{ asset('index-img/favicon.ico') }}">
     <!-- CSS FILES -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
 
@@ -17,13 +17,13 @@
         href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200;0,400;0,600;0,700;1,200;1,700&display=swap"
         rel="stylesheet">
 
-    <link href="{{ asset('css/index-css/bootstrap.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/index-css/bootstrap.min.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/index-css/bootstrap-icons.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/index-css/bootstrap-icons.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/index-css/vegas.min.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/index-css/vegas.min.css') }}" rel="stylesheet">
 
-    <link href="{{ asset('css/index-css/tooplate-barista.css')}}" rel="stylesheet">
+    <link href="{{ asset('css/index-css/tooplate-barista.css') }}" rel="stylesheet">
 
 </head>
 
@@ -33,7 +33,8 @@
         <nav class="navbar navbar-expand-lg">
             <div class="container">
                 <a class="navbar-brand d-flex align-items-center" href="/">
-                    <img src="{{asset('index-img/favicon.ico')}}" class="navbar-brand-image img-fluid" alt="Doña Juana Logo">
+                    <img src="{{ asset('index-img/favicon.ico') }}" class="navbar-brand-image img-fluid"
+                        alt="Doña Juana Logo">
                     Cuyes Doña Juana
                 </a>
 
@@ -66,7 +67,7 @@
                     </ul>
 
                     <div class="ms-lg-3">
-                        <a class="btn custom-btn custom-border-btn" href="{{route('login')}}">
+                        <a class="btn custom-btn custom-border-btn" href="{{ route('login') }}">
                             Iniciar Sesión
                             <i class="bi-arrow-up-right ms-2"></i>
                         </a>
@@ -113,7 +114,7 @@
                     <div class="col-lg-6 col-12">
                         <div class="ratio ratio-1x1">
                             <video autoplay="" loop="" muted="" class="custom-video" poster="">
-                                <source src="{{ asset ('videos/pexels-mike-jones-9046237.mp4') }}" type="video/mp4">
+                                <source src="{{ asset('videos/pexels-mike-jones-9046237.mp4') }}" type="video/mp4">
                                 Your browser does not support the video tag.
                             </video>
 
@@ -130,13 +131,15 @@
 
                         <h2 class="text-white mb-3">La mejor sazón</h2>
 
-                        <p class="text-white">Es reconocida por ofrecer los mejores cuyes del norte peruano. 
+                        <p class="text-white">Es reconocida por ofrecer los mejores cuyes del norte peruano.
                             Con una tradición que resalta el auténtico sabor local.</p>
 
-                        <p class="text-white">Sus platos destacan por la frescura y sazón, capturando el espíritu culinario de la región. 
+                        <p class="text-white">Sus platos destacan por la frescura y sazón, capturando el espíritu
+                            culinario de la región.
                             Es el destino ideal para quienes buscan una experiencia</p>
 
-                        <a href="#barista-team" class="smoothscroll btn custom-btn custom-border-btn mt-3 mb-4">Conoce a nuestro EQUIPO</a>
+                        <a href="#barista-team" class="smoothscroll btn custom-btn custom-border-btn mt-3 mb-4">Conoce a
+                            nuestro EQUIPO</a>
                     </div>
 
                 </div>
@@ -181,11 +184,11 @@
 
                                     <p class="badge ms-4"><em>Camarero</em></p>
                                 </div>
-                                <p class="text-white mb-0"></p>                
+                                <p class="text-white mb-0"></p>
                             </div>
 
                             <div class="team-block-image-wrap">
-                                <img src="{{ asset('index-img/team/evilpol.png')}}"
+                                <img src="{{ asset('index-img/team/evilpol.png') }}"
                                     class="team-block-image img-fluid" alt="">
                             </div>
                         </div>
@@ -200,11 +203,11 @@
                                     <p class="badge ms-4"><em>Cocinero</em></p>
                                 </div>
 
-                                
+
                             </div>
 
                             <div class="team-block-image-wrap">
-                                <img src="{{ asset('index-img/team/irvin2.png')}}"
+                                <img src="{{ asset('index-img/team/irvin2.png') }}"
                                     class="team-block-image img-fluid" alt="">
                             </div>
                         </div>
@@ -219,11 +222,11 @@
                                     <p class="badge ms-4"><em>Mozo</em></p>
                                 </div>
 
-                                
+
                             </div>
 
                             <div class="team-block-image-wrap">
-                                <img src="{{ asset('index-img/team/antoni.png')}}"
+                                <img src="{{ asset('index-img/team/antoni.png') }}"
                                     class="team-block-image img-fluid" alt="">
                             </div>
                         </div>
@@ -273,7 +276,8 @@
                                 </div>
 
                                 <div class="border-top mt-2 pt-2">
-                                    <small>Tamales de maíz rellenos con carne de cerdo, cocidos a fuego lento y servidos con salsa criolla.</small>
+                                    <small>Tamales de maíz rellenos con carne de cerdo, cocidos a fuego lento y servidos
+                                        con salsa criolla.</small>
                                 </div>
                             </div>
 
@@ -289,7 +293,8 @@
                                 </div>
 
                                 <div class="border-top mt-2 pt-2">
-                                    <small>Nuestro clásico cuy al horno, crujiente por fuera y jugoso por dentro, acompañado de papas doradas y ensalada fresca.</small>
+                                    <small>Nuestro clásico cuy al horno, crujiente por fuera y jugoso por dentro,
+                                        acompañado de papas doradas y ensalada fresca.</small>
                                 </div>
                             </div>
 
@@ -303,7 +308,8 @@
                                 </div>
 
                                 <div class="border-top mt-2 pt-2">
-                                    <small>Refrescante jugo natural de papaya y maracuyá, lleno de vitaminas y antioxidantes.</small>
+                                    <small>Refrescante jugo natural de papaya y maracuyá, lleno de vitaminas y
+                                        antioxidantes.</small>
                                 </div>
                             </div>
 
@@ -317,7 +323,9 @@
                                 </div>
 
                                 <div class="border-top mt-2 pt-2">
-                                    <small>Café orgánico de alta calidad, cultivado en las montañas del norte. Su aroma y sabor profundo hacen de esta bebida el complemento perfecto para una mañana energizante.</small>
+                                    <small>Café orgánico de alta calidad, cultivado en las montañas del norte. Su aroma
+                                        y sabor profundo hacen de esta bebida el complemento perfecto para una mañana
+                                        energizante.</small>
                                 </div>
                             </div>
                         </div>
@@ -342,7 +350,8 @@
                                 </div>
 
                                 <div class="border-top mt-2 pt-2">
-                                    <small>Un plato emblemático para quienes desean probar lo mejor de la cocina peruana.
+                                    <small>Un plato emblemático para quienes desean probar lo mejor de la cocina
+                                        peruana.
                                     </small>
                                 </div>
                             </div>
@@ -360,7 +369,8 @@
                                 </div>
 
                                 <div class="border-top mt-2 pt-2">
-                                    <small>Tiernas piezas de cabrito cocidas a fuego lento en una salsa de culantro, ají y chicha de jora, servidas con frejoles y arroz.</small>
+                                    <small>Tiernas piezas de cabrito cocidas a fuego lento en una salsa de culantro, ají
+                                        y chicha de jora, servidas con frejoles y arroz.</small>
                                 </div>
                             </div>
 
@@ -374,7 +384,8 @@
                                 </div>
 
                                 <div class="border-top mt-2 pt-2">
-                                    <small>Delicados trozos de cuy frito, crujientes por fuera y suaves por dentro, servidos con yuca dorada</small>
+                                    <small>Delicados trozos de cuy frito, crujientes por fuera y suaves por dentro,
+                                        servidos con yuca dorada</small>
                                 </div>
                             </div>
 
@@ -388,7 +399,8 @@
                                 </div>
 
                                 <div class="border-top mt-2 pt-2">
-                                    <small>Cuy entero asado a la parrilla, marinado con hierbas y especias locales para un sabor ahumado y jugoso.</small>
+                                    <small>Cuy entero asado a la parrilla, marinado con hierbas y especias locales para
+                                        un sabor ahumado y jugoso.</small>
                                 </div>
                             </div>
 
@@ -402,7 +414,8 @@
                                 </div>
 
                                 <div class="border-top mt-2 pt-2">
-                                    <small>Cuy cocido en una rica y espesa salsa de ají amarillo y maní, servido con arroz y papas doradas.</small>
+                                    <small>Cuy cocido en una rica y espesa salsa de ají amarillo y maní, servido con
+                                        arroz y papas doradas.</small>
                                 </div>
                             </div>
                         </div>
@@ -428,7 +441,7 @@
                             <div class="timeline-content">
                                 <div class="reviews-block">
                                     <div class="reviews-block-image-wrap d-flex align-items-center">
-                                        <img src="{{ asset('index-img/reviews/young-woman-with-round-glasses-yellow-sweater.jpg')}}"
+                                        <img src="{{ asset('index-img/reviews/young-woman-with-round-glasses-yellow-sweater.jpg') }}"
                                             class="reviews-block-image img-fluid" alt="">
 
                                         <div class="">
@@ -462,7 +475,7 @@
                             <div class="timeline-content">
                                 <div class="reviews-block">
                                     <div class="reviews-block-image-wrap d-flex align-items-center">
-                                        <img src="{{ asset('index-img/reviews/senior-man-white-sweater-eyeglasses.jpg')}}"
+                                        <img src="{{ asset('index-img/reviews/senior-man-white-sweater-eyeglasses.jpg') }}"
                                             class="reviews-block-image img-fluid" alt="">
 
                                         <div class="">
@@ -496,7 +509,7 @@
                             <div class="timeline-content">
                                 <div class="reviews-block">
                                     <div class="reviews-block-image-wrap d-flex align-items-center">
-                                        <img src="{{ asset('index-img/reviews/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair.jpg')}}"
+                                        <img src="{{ asset('index-img/reviews/young-beautiful-woman-pink-warm-sweater-natural-look-smiling-portrait-isolated-long-hair.jpg') }}"
                                             class="reviews-block-image img-fluid" alt="">
 
                                         <div class="">
@@ -564,7 +577,8 @@
                                 <div class="col-12">
                                     <label for="message" class="form-label">Cómo te podemos ayudar??</label>
 
-                                    <textarea name="message" rows="4" class="form-control" id="message" placeholder="Mensaje..." required=""></textarea>
+                                    <textarea name="message" rows="4" class="form-control" id="message" placeholder="Mensaje..."
+                                        required=""></textarea>
 
                                 </div>
                             </div>
@@ -576,8 +590,8 @@
                     </div>
 
                     <div class="col-lg-6 col-12 mx-auto mt-5 mt-lg-0 ps-lg-5">
-                        <iframe class="google-map"
-                            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d5039.668141741662!2d72.81814769288509!3d19.043340656729775!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3be7c994f34a7355%3A0x2680d63a6f7e33c2!2sLover%20Point!5e1!3m2!1sen!2sth!4v1692722771770!5m2!1sen!2sth"
+                                                <iframe
+                            src="https://www.google.com/maps/embed?pb=!1m14!1m12!1m3!1d557.7987759107036!2d-79.84609713320863!3d-6.771868681145993!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!5e1!3m2!1ses-419!2spe!4v1730700191822!5m2!1ses-419!2spe"
                             width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy"
                             referrerpolicy="no-referrer-when-downgrade"></iframe>
                     </div>
@@ -685,17 +699,22 @@
     <script>
         $(function() {
             $('.hero-slides').vegas({
-                slides: [
-                    { src: "{{ asset('index-img/slides/familia1.jpg') }}" },
-                    { src: "{{ asset('index-img/slides/familia2.jpg') }}" },
-                    { src: "{{ asset('index-img/slides/familia3.jpg') }}" }
+                slides: [{
+                        src: "{{ asset('index-img/slides/familia1.jpg') }}"
+                    },
+                    {
+                        src: "{{ asset('index-img/slides/familia2.jpg') }}"
+                    },
+                    {
+                        src: "{{ asset('index-img/slides/familia3.jpg') }}"
+                    }
                 ],
                 timer: false,
                 animation: 'kenburns',
             });
         });
     </script>
-    
+
 </body>
 
 </html>
